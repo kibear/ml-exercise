@@ -22,19 +22,19 @@ class LinearRegression:
 		返回的是所有样本上的平均值
 		"""
 		size = len(train_x)
-		total_mse = 0
+		total_se = 0
 		w_gradients = np.zeros(train_x.shape[1])
 		b_gradients = 0
 		for i in range(size):
 			x = train_x[i]
 			y = train_y[i]
 			y_hat = self.predict(x)
-			total_mse += self.MSE(y, y_hat)
+			total_se += self.SE(y, y_hat)
 			w_gradients += (y_hat - y) * x
 			b_gradients += (y_hat - y)
-		return 	w_gradients / float(size), b_gradients / float(size), total_mse / float(size)
+		return 	w_gradients / float(size), b_gradients / float(size), total_se / float(size)
 	
-	def MSE(self, y, y_hat):
+	def SE(self, y, y_hat):
 		return (y_hat - y) ** 2
 	
 	def predict(self, x):
